@@ -5,7 +5,7 @@ PSVITAIP = 192.168.1.115
 OBJS = $(patsubst %.c, %.o, $(wildcard *.c))
 HEADERS = $(wildcard *.h)
 
-LIBS = -lSceDisplay_stub -lSceGxm_stub -lScePower_stub
+LIBS = -lSceDisplay_stub -lSceGxm_stub -lScePower_stub -lSceCtrl_stub
 
 PREFIX  = arm-vita-eabi
 CC      = $(PREFIX)-gcc
