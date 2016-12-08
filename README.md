@@ -3,5 +3,7 @@ This homebrew rebuilds the database by deleting app.db (a better method of doing
 
 Credits: 
 Celeste Blue (icon and a little help with the homebrew)
+
 zecoxao
+
 Freakler (for info about the methods used)
