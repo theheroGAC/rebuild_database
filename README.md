@@ -8,3 +8,7 @@ Celeste Blue (icon and a little help with the homebrew)
 zecoxao
 
 Freakler (for info about the methods used)
+
+xyzz (for his nice approach to get key input code)
+
+SMOKE (for his memorycard-swap id.dat method)
