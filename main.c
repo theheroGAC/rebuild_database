@@ -61,6 +61,11 @@ void press_exit(void) {
 	exit(0);
 }
 
+//cafe babe (sony devs be naughty)
+char magik[] = {
+	0xBE, 0xBA, 0xFE, 0xCA
+};
+
 int main(int argc, char **argv) {
 	int key = 0;
 	psvDebugScreenInit();
@@ -69,13 +74,22 @@ again:
 	
 	psvDebugScreenPrintf("Press CIRCLE to update database (id.dat method)\n");
 	psvDebugScreenPrintf("Press CROSS to rebuild database (app.db method)\n");
+	psvDebugScreenPrintf("Press SQUARE to rebuild database (dbr.db-err method)\n");
 	
 	key = get_key();
 	
 	if (key == SCE_CTRL_CROSS) {
 		psvDebugScreenPrintf("Rebuilding database...\n");
 		sceIoRemove("ur0:shell/db/app.db");
-	} else if (key == SCE_CTRL_CIRCLE) {
+	} else if (key == SCE_CTRL_SQUARE) {
+		psvDebugScreenPrintf("Rebuilding database...\n");
+		SceUID id;
+		id = sceIoOpen("ur0:shell/db/dbr.db-err", SCE_O_WRONLY|SCE_O_CREAT, 0777);
+		//chosen by fair dice roll !
+		sceIoWrite(id, magik, 4);
+		sceIoClose(id);
+	}
+	else if (key == SCE_CTRL_CIRCLE) {
 		psvDebugScreenPrintf("Updating database...\n");
 		sceIoRemove("ux0:id.dat");
 		SceUID id;
