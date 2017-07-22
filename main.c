@@ -25,6 +25,7 @@
 
 int get_key(void) {
 	static unsigned buttons[] = {
+		SCE_CTRL_LTRIGGER,
 		SCE_CTRL_RTRIGGER,
 		SCE_CTRL_TRIANGLE,
 		SCE_CTRL_CIRCLE,
@@ -70,6 +71,7 @@ again:
 	psvDebugScreenPrintf("Press SQUARE to rebuild database (dbr.db-err method)\n");
 	psvDebugScreenPrintf("Press TRIANGLE to restart PSVITA\n");
 	psvDebugScreenPrintf("Press RTRIGGER to shutdown PSVITA\n");
+	psvDebugScreenPrintf("Press LTRIGGER to suspend PSVITA\n");
 	
 	key = get_key();
 	
@@ -97,6 +99,9 @@ again:
 		}
 	else if (key == SCE_CTRL_RTRIGGER) {
 		scePowerRequestStandby();
+		}
+	else if (key == SCE_CTRL_LTRIGGER) {
+		scePowerRequestSuspend();
 	}else {
 		printf("Invalid input, try again.\n\n");
 		goto again;
