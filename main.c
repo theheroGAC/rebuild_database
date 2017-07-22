@@ -25,13 +25,6 @@
 
 int get_key(void) {
 	static unsigned buttons[] = {
-		SCE_CTRL_SELECT,
-		SCE_CTRL_START,
-		SCE_CTRL_UP,
-		SCE_CTRL_RIGHT,
-		SCE_CTRL_DOWN,
-		SCE_CTRL_LEFT,
-		SCE_CTRL_LTRIGGER,
 		SCE_CTRL_RTRIGGER,
 		SCE_CTRL_TRIANGLE,
 		SCE_CTRL_CIRCLE,
@@ -75,6 +68,8 @@ again:
 	psvDebugScreenPrintf("Press CIRCLE to update database (id.dat method)\n");
 	psvDebugScreenPrintf("Press CROSS to rebuild database (app.db method)\n");
 	psvDebugScreenPrintf("Press SQUARE to rebuild database (dbr.db-err method)\n");
+	psvDebugScreenPrintf("Press TRIANGLE to restart PSVITA\n");
+	psvDebugScreenPrintf("Press RTRIGGER to shutdown PSVITA\n");
 	
 	key = get_key();
 	
@@ -96,6 +91,12 @@ again:
 		id = sceIoOpen("ux0:/id.dat", SCE_O_WRONLY|SCE_O_CREAT, 0777);
 		sceIoWrite(id, NULL, 0x0);
 		sceIoClose(id);
+		}
+		else if (key == SCE_CTRL_TRIANGLE) {
+		scePowerRequestColdReset();
+		}
+	else if (key == SCE_CTRL_RTRIGGER) {
+		scePowerRequestStandby();
 	}else {
 		printf("Invalid input, try again.\n\n");
 		goto again;
